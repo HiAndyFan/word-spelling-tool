@@ -1,0 +1,124 @@
+/* 全局样式 */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 32px;
+  
+}
+
+/* 应用容器 */
+.app {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  width: 100%;
+  max-width: 100vw; /* 增大整体宽度 */
+  margin: 20px;
+}
+
+/* 输入区域 */
+.input-section {
+  margin-bottom: 24px;
+}
+
+.input-section button {
+  width: 200px;
+  margin-top: 12px;
+  margin-right: 12px;
+}
+
+.input-section button:hover {
+  background-color: #40a9ff;
+}
+
+.input-section button:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}
+
+.input-disabled {
+  color: transparent;
+}
+
+/* 听写区域 */
+.dictation-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.replay-button {
+  margin-left: 12px;
+  width: 120px;
+  height: 48px;
+}
+
+.dictation-section input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.dictation-section input:focus {
+  border-color: #40a9ff;
+  outline: none;
+}
+
+/* 结果区域 */
+.result-section {
+  display: flex;
+  gap: 24px;
+}
+
+.correct-words,
+.incorrect-words {
+  flex: 1;
+  background-color: #fafafa;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.correct-words h3,
+.incorrect-words h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* 单词列表以 Tag 形式展示 */
+.word-tags {
+  display: flex;
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 8px; /* 标签之间的间距 */
+}
+
+.word-tag {
+  padding: 6px 12px;
+  background-color: #ffffff;
+  border-radius: 16px; /* 圆角 */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.word-tag:hover {
+  transform: translateY(-2px);
+}
+
+.correct-words .word-tag {
+  background-color: #f6ffed; /* 浅绿色背景 */
+  border: 1px solid #b7eb8f; /* 绿色边框 */
+  color: #52c41a; /* 绿色文字 */
+}
+
+.incorrect-words .word-tag {
+  background-color: #fff1f0; /* 浅红色背景 */
+  border: 1px solid #ffa39e; /* 红色边框 */
+  color: #ff4d4f; /* 红色文字 */
+}
