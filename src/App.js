@@ -44,20 +44,23 @@ const App = () => {
   };
 
   const clearCache = () => {
-    localStorage.removeItem("wordList");
-    localStorage.removeItem("correctWords");
-    localStorage.removeItem("incorrectWords");
-    setWordList([]);
-    setCorrectWords([]);
-    setIncorrectWords([]);
-    setText("");
-    setCurrentWord("");
-    setUserInput("");
-    setIsStarted(false);
-    notification.success({
-      message: "缓存已清空",
-      description: "所有缓存数据已被清空",
-    });
+    const confirmClear = window.confirm("确定要清空缓存吗？此操作无法撤销。");
+    if (confirmClear) {
+      localStorage.removeItem("wordList");
+      localStorage.removeItem("correctWords");
+      localStorage.removeItem("incorrectWords");
+      setWordList([]);
+      setCorrectWords([]);
+      setIncorrectWords([]);
+      setText("");
+      setCurrentWord("");
+      setUserInput("");
+      setIsStarted(false);
+      notification.success({
+        message: "缓存已清空",
+        description: "所有缓存数据已被清空",
+      });
+    }
   };
 
   const handleTextChange = (e) => {
@@ -65,7 +68,8 @@ const App = () => {
   };
 
   const splitTextIntoWords = () => {
-    const words = text.split(/[\s,.\n]+/).filter((word) => word.trim() !== "");
+    const allWords = text.split(/[\W]+/).filter((word) => word.trim() !== "");
+    const words = Array.from(new Set(allWords)); // 去重
     setWordList(words);
     setCurrentWord(words[0]);
     setIsStarted(true);
@@ -153,7 +157,11 @@ const App = () => {
           onChange={handleTextChange}
           className={isStarted && "input-disabled"}
         />
-        <Button type="primary" onClick={splitTextIntoWords}>
+        <Button
+          type="primary"
+          onClick={splitTextIntoWords}
+          disabled={isStarted}
+        >
           开始听写
         </Button>
         <Button onClick={copyWordListToClipboard.bind(null, incorrectWords)}>
